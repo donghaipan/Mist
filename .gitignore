@@ -1,0 +1,5 @@
+# build directory
+build*/
+*.cache/
+cmake-*/
+debug*/
