@@ -1,4 +1,4 @@
-include(FindPythonInterp)
+find_package (Python3 COMPONENTS Interpreter)
 
 # users should not call this function. This function serves as a base function,
 # and is only used inside test/mist/base/CMakeLists.txt for testing purpose
@@ -30,7 +30,7 @@ function(mist_generate_enum)
 
     add_custom_command(
       OUTPUT ${ENUM_HDR}
-      COMMAND ${PYTHON_EXECUTABLE} ${ENUM_GENERATOR}
+      COMMAND ${Python3_EXECUTABLE} ${ENUM_GENERATOR}
               "--input=${cc_enum_REL_PATH}/${ENUM_FILE}" "--output=${ENUM_HDR}"
       DEPENDS ${ENUM_GENERATOR} ${cc_enum_REL_PATH}/${ENUM_FILE}
       COMMENT "Generate enum header for ${ENUM_FILE}"

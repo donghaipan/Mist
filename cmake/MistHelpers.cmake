@@ -21,7 +21,7 @@ function(mist_library_registry name)
     TARGET ${target_name}
     POST_BUILD
     COMMAND
-      nm --format=p $<TARGET_FILE:${target_name}> | grep ${REGISTRY_PATTERN} |
+      nm --format=posix $<TARGET_FILE:${target_name}> | grep ${REGISTRY_PATTERN} |
       awk ${awk_arg} > $<TARGET_FILE:${target_name}>.registry_vars
     VERBATIM)
 

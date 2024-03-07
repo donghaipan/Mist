@@ -38,7 +38,7 @@ list(
   "-Winvalid-constexpr"
   "-Wliteral-conversion"
   "-Wmissing-declarations"
-  "-Wmissing-prototypes"
+  # "-Wmissing-prototypes" # TODO: fix with protobuf 
   "-Woverlength-strings"
   "-Wpointer-arith"
   "-Wself-assign"
@@ -62,7 +62,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   set(MIST_DEFAULT_COPTS "${MIST_GCC_FLAGS}")
   set(MIST_TEST_COPS "${MIST_GCC_FLAGS};${MIST_GCC_TEST_FLAGS}")
   set(MIST_BENCHMARK_COPTS "${MIST_TEST_COPS}")
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
   set(MIST_DEFAULT_COPTS "${MIST_LLVM_FLAGS}")
   set(MIST_TEST_COPS "${MIST_LLVM_FLAGS};${MIST_LLVM_TEST_FLAGS}")
   set(MIST_BENCHMARK_COPTS "${MIST_TEST_COPS}")

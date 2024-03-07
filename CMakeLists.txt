@@ -35,9 +35,9 @@ include(MistHelpers)
 # for enum
 include(MistEnum)
 
-find_package(benchmark REQUIRED)
-find_package(Boost REQUIRED COMPONENTS unit_test_framework headers)
-find_package(Eigen3 3.4 REQUIRED)
+find_package(fmt REQUIRED)
+find_package(GTest REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(Protobuf REQUIRED)
 
 # build proto
@@ -45,8 +45,8 @@ include(MistProto)
 
 add_subdirectory(src)
 add_subdirectory(test)
-add_subdirectory(app)
-add_subdirectory(benchmark)
+# add_subdirectory(app)
+# add_subdirectory(benchmark)
 
 # install project
 include(CMakePackageConfigHelpers)
