@@ -37,7 +37,6 @@ include(MistEnum)
 
 find_package(fmt REQUIRED)
 find_package(GTest REQUIRED)
-find_package(Eigen3 REQUIRED)
 find_package(Protobuf REQUIRED)
 
 # build proto

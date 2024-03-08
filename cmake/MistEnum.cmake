@@ -27,13 +27,14 @@ function(mist_generate_enum)
     get_filename_component(FILE_DIR ${ENUM_FILE} DIRECTORY)
     get_filename_component(FILE_NAME ${ENUM_FILE} NAME_WE)
     set(ENUM_HDR ${cc_enum_OUTPUT_PATH}/${FILE_DIR}/${FILE_NAME}.h)
+    file(RELATIVE_PATH REL_ENUM_HDR ${CMAKE_BINARY_DIR} ${ENUM_HDR})
 
     add_custom_command(
       OUTPUT ${ENUM_HDR}
       COMMAND ${Python3_EXECUTABLE} ${ENUM_GENERATOR}
               "--input=${cc_enum_REL_PATH}/${ENUM_FILE}" "--output=${ENUM_HDR}"
       DEPENDS ${ENUM_GENERATOR} ${cc_enum_REL_PATH}/${ENUM_FILE}
-      COMMENT "Generate enum header for ${ENUM_FILE}"
+      COMMENT "Generate enum header for ${ENUM_FILE} to ${REL_ENUM_HDR}"
       VERBATIM)
     list(APPEND ENUM_HDRS ${ENUM_HDR})
   endforeach()

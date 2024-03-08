@@ -34,12 +34,13 @@ if(proto_files)
     get_filename_component(PROTO_NAME ${PROTO_FILE} NAME_WE)
     set(PROTO_HDR ${CC_PROTO_OUTPUT_PATH}/${PROTO_DIR}/${PROTO_NAME}.pb.h)
     set(PROTO_SRC ${CC_PROTO_OUTPUT_PATH}/${PROTO_DIR}/${PROTO_NAME}.pb.cc)
+    file(RELATIVE_PATH REL_PROTO_HDR ${CMAKE_BINARY_DIR} ${PROTO_HDR})
     add_custom_command(
       OUTPUT ${PROTO_SRC} ${PROTO_HDR}
       COMMAND ${PROTOC_PRG} "--proto_path=${CC_PROTO_INPUT_PATH}" ${PROTO_DIRS}
               "--cpp_out=${CC_PROTO_OUTPUT_PATH}" ${PROTO_FILE}
       DEPENDS ${CC_PROTO_INPUT_PATH}/${PROTO_FILE} ${PROTOC_PRG}
-      COMMENT "Generate C++ protocol buffer for ${PROTO_FILE}"
+      COMMENT "Generate C++ protocol buffer for ${PROTO_FILE} to ${REL_PROTO_HDR}"
       VERBATIM)
     list(APPEND PROTO_HDRS ${PROTO_HDR})
     list(APPEND PROTO_SRCS ${PROTO_SRC})
